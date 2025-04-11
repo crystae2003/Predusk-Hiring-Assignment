@@ -1,0 +1,108 @@
+/* --- Portfolio Section --- */
+.portfolio-section {
+  margin-bottom: 3.5rem;
+}
+
+.portfolio-section h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1c1c1e;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  display: inline-block;
+}
+
+.portfolio-section p {
+  color: #636366;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* --- Skills List --- */
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+
+.skill-item {
+  background-color: #f2f2f7;
+  color: #3a3a3c;
+  padding: 7px 16px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.skill-item:hover {
+  background-color: #e5e5ea;
+}
+
+.highlight-skill {
+  background-color: #dcedff;
+  color: #0056b3;
+}
+
+.skill-category-tag {
+  font-size: 0.8em;
+  color: #8a8a8e;
+  margin-left: 4px;
+}
+
+/* --- Buttons --- */
+.button {
+  display: inline-block;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #007aff;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  margin-top: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.15);
+}
+
+.button:hover {
+  background-color: #005ecb;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 122, 255, 0.2);
+}
+
+/* --- Responsive for Mobile --- */
+@media (max-width: 768px) {
+  .portfolio-section {
+    margin-bottom: 3rem;
+  }
+  .portfolio-section h2 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-section {
+    margin-bottom: 2.5rem;
+  }
+  .portfolio-section h2 {
+    font-size: 1.4rem;
+  }
+  .skill-item {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
+  .button {
+    padding: 9px 18px;
+    font-size: 0.9rem;
+  }
+}
