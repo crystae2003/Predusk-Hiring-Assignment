@@ -94,20 +94,22 @@ function About() {
                 key={index}
                 style={{
                   display: "flex",
-                  alignItems: "baseline", // aligns bullet with the text's baseline
+                  alignItems: "center", // aligns bullet with the text's baseline
                   marginBottom: "1rem"
                 }}
               >
                 <div
                   style={{
-                    minWidth: "16px",      // reserve a fixed width for the bullet column
-                    height: "16px",        // fixed height
+                    minWidth: "16px", 
+                    height: "16px",        
                     borderRadius: "50%",
                     border: "1px solid white",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginRight: "0.5rem"  // space between the bullet and the text
+                    marginRight: "1.5rem",  
+                    paddingLeft: "1px",
+                    paddingTop: "1px"
                   }}
                 >
                   <div

@@ -1,81 +1,159 @@
-// Chatbot.js
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaComment, FaPaperPlane, FaRegCommentAlt } from 'react-icons/fa'; // Import necessary icons
+import './Chatbot.css'; // Import the CSS file
 
 const Chatbot = () => {
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // To show loading state
+
+  const messagesEndRef = useRef(null); // Ref for scrolling to bottom
+
+  // Function to scroll to the bottom of the chat messages
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll to bottom whenever chat messages update
+  useEffect(() => {
+    scrollToBottom();
+  }, [chat]);
+
+  // Scroll to bottom when chat opens
+  useEffect(() => {
+    if (isOpen) {
+        // Timeout allows the animation to start before scrolling
+        setTimeout(scrollToBottom, 50);
+    }
+  }, [isOpen])
+
 
   const sendMessage = async () => {
-    if (!message.trim()) return;
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage) return;
 
-    // Add the user's message to the chat
-    setChat([...chat, { sender: 'user', text: message }]);
+    const newUserMessage = { sender: 'user', text: trimmedMessage };
+    setChat(prevChat => [...prevChat, newUserMessage]);
     setMessage('');
+    setIsLoading(true); // Start loading
 
     try {
+      // --- Your API Call ---
+      // Simulating API call delay for demonstration
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Replace with your actual fetch call:
       const response = await fetch('http://localhost:5000/api/chatbot', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({ message: trimmedMessage }) // Send trimmed message
       });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
+      if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
+      
+      
+
       setChat(prevChat => [...prevChat, { sender: 'bot', text: data.reply }]);
+
     } catch (error) {
-      console.error('Error fetching chatbot reply:', error);
-      setChat(prevChat => [...prevChat, { sender: 'bot', text: 'Sorry, there was an error.' }]);
+      console.error('Error sending message:', error);
+      setChat(prevChat => [...prevChat, { sender: 'bot', text: 'Sorry, I encountered an error. Please try again.' }]);
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
+      e.preventDefault(); // Prevent default newline behavior
+      sendMessage();
     }
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '20px auto' }}>
-      <h2>Chatbot Interface</h2>
-      <div style={{
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        padding: '10px',
-        height: '300px',
-        overflowY: 'scroll',
-        backgroundColor: '#f9f9f9'
-      }}>
-        {chat.map((c, index) => (
-          <div key={index} style={{
-            margin: '8px 0',
-            textAlign: c.sender === 'user' ? 'right' : 'left'
-          }}>
-            <div style={{
-              display: 'inline-block',
-              padding: '8px 12px',
-              backgroundColor: c.sender === 'user' ? '#DCF8C6' : '#FFF',
-              borderRadius: '10px',
-              maxWidth: '80%'
-            }}>
-              {c.text}
-            </div>
+    <>
+      {/* "Ask Me" Button */}
+      <button
+        className="chat-button"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+      >
+        <FaComment />
+        Ask Me
+      </button>
+
+      {/* Chat Window */}
+      <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
+        {/* Header */}
+        <div className="chat-header">
+          <div className="chat-header-content">
+             <FaRegCommentAlt className="chat-header-icon" /> {/* Header Icon */}
+             <div className="chat-header-text">
+               <h3>How can we help?</h3> {/* Updated Title */}
+               {/* <span>Typically replies instantly</span>  Optional subtitle */}
+             </div>
           </div>
-        ))}
+          <button onClick={() => setIsOpen(false)} className="close-button" aria-label="Close chat">
+            &mdash; {/* Minimize style button */}
+          </button>
+        </div>
+
+        {/* Messages Area */}
+        <div className="chat-messages">
+          {chat.length === 0 ? (
+            <div className="initial-message">
+              👋 {/* Optional Waving Hand Emoji */}
+              <br/>
+              Ask Me Anything
+              <br/>
+              About Hemlata Gautam!
+            </div>
+          ) : (
+            chat.map((c, index) => (
+              <div key={index} className={`message ${c.sender}`}>
+                <div className="message-bubble">
+                  {c.text}
+                </div>
+              </div>
+            ))
+          )}
+          {/* Optional: Loading indicator */}
+          {isLoading && (
+             <div className="message bot">
+                <div className="message-bubble"><i>Typing...</i></div>
+             </div>
+          )}
+          {/* Dummy div to ensure scroll stays at bottom */}
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Input Area */}
+        <div className="chat-input-area">
+          <input
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Write a message..."
+            aria-label="Chat message input"
+            disabled={isLoading} // Disable input while loading
+          />
+          <button
+            onClick={sendMessage}
+            className="send-button"
+            aria-label="Send message"
+            disabled={!message.trim() || isLoading} // Disable if no message or loading
+          >
+            <FaPaperPlane /> {/* Send Icon */}
+          </button>
+        </div>
+
+         {/* Footer */}
+         <div className="chat-footer">
+            Powered by <a href="https://www.together.ai/" target="_blank" rel="noopener noreferrer">Together.AI</a>
+         </div>
       </div>
-      <div style={{ marginTop: '10px', display: 'flex' }}>
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') sendMessage(); }}
-          placeholder="Type your message..."
-          style={{ flex: 1, padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
-        />
-        <button 
-          onClick={sendMessage}
-          style={{ marginLeft: '10px', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer' }}
-        >
-          Send
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 
