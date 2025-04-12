@@ -19,7 +19,6 @@ function About() {
     `Notable Achievement:
     My most significant accomplishment to date is winning the IEEE VIP Cup. As part of an innovative team, I contributed to developing a groundbreaking medical eye scan-based diabetes detection model, demonstrating my ability to blend healthcare innovation with advanced technology solutions.`];
 
-
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const contentRef = useRef(null);
@@ -88,45 +87,17 @@ function About() {
           {aboutMeDetailed.trim().split('\n\n').map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
-          <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
+          <ul className="about-list">
             {about_points.map((point, index) => (
-              <li
-                key={index}
-                style={{
-                  display: "flex",
-                  alignItems: "center", // aligns bullet with the text's baseline
-                  marginBottom: "1rem"
-                }}
-              >
-                <div
-                  style={{
-                    minWidth: "16px", 
-                    height: "16px",        
-                    borderRadius: "50%",
-                    border: "1px solid white",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginRight: "1.5rem",  
-                    paddingLeft: "1px",
-                    paddingTop: "1px"
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "6px",
-                      height: "6px",
-                      backgroundColor: "white",
-                      borderRadius: "50%"
-                    }}
-                  ></div>
+              <li key={index} className="about-list-item">
+                <div className="bullet-container">
+                  <div className="bullet"></div>
                 </div>
-                <span style={{ lineHeight: "1.5" /* or adjust as needed */ }}>{point}</span>
+                <span>{point}</span>
               </li>
             ))}
           </ul>
         </div>
-        
       </div>
     </section>
   );

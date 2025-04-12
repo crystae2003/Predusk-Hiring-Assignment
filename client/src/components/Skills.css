@@ -1,166 +1,212 @@
 /* Container */
 .skills-carousel-wrapper {
-    background-color: black;
-    color: white;
-    min-height: 100vh;
-    width: 100%;
-    padding: 2rem;
-  }
-  
-  .skills-carousel-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Header Section */
-  .skills-header {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 3rem;
-  }
-  
-  .header-left {
-    width: 50%;
-  }
-  
-  .header-subtitle {
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
-  
-  .header-title {
-    font-size: 3.5rem;
-    font-weight: bold;
-    line-height: 1.1;
-  }
-  
-  .header-right {
-    margin-left: 2rem;
-    width: 50%;
-  }
-  
-  .skills-title {
-    font-size: 2.1rem;
-    font-weight: bold;
-    color: #FFF;
-    margin-bottom: 1rem;
-  }
-  
-  .skills-divider {
-    border-bottom: 1px solid #333;
-    margin-bottom: 1rem;
-  }
-  
-  /* Skills List */
-  .skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .skill-item {
-    border: 1px solid #222;
-    background-color: #161310;
-    border-radius: 25px;
-    padding: 8px 10px;
-    display: inline-block;
-    white-space: nowrap;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  .skill-item:hover{
-    transform: translateY(-2px); /* Slight lift on hover */
-  }
-  
-  .skill-name {
-    font-weight: 500;
-    color: #CCC;
-  }
-  
-  .skill-category {
-    color: #999;
-    font-size: 0.9rem;
-    margin-left: 5px;
-  }
-  
-  .highlight-skill {
-    background-color: #231800; /* Lighter blue for highlighted skills */
-    font-weight: 500; /* Slightly bolder */
-    border: 1px solid #432C05; /* Darker border */  
-  }
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem;
+}
 
-  /* Carousel Cards */
-  .carousel-container {
-    position: relative;
-    /* Ensure full width usage */
-    width: 100%;
-  }
-  
-  /* Make the carousel-track-wrapper full width and add horizontal padding so content won't be hidden under the chevrons */
-  .carousel-track-wrapper {
-    overflow: hidden;
-    width: 100%;
-    padding: 0 65px; /* Adjust this value to be slightly larger than the chevron's width */
-  }
-  
-  /* The track holds all slides in a horizontal row */
-  .cards-track {
-    /* overflow: hidden; */
-    display: flex;
-    gap: 1rem; /* Use gap instead of margin on cards for easier calculation */
-    transition: transform 0.5s ease;
-  }
-  
-  /* Each card takes 50% of the visible area inside carousel-track-wrapper */
+.skills-carousel-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.skills-header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 3rem;
+}
+
+.header-left {
+  width: 50%;
+}
+
+.header-subtitle {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.header-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.header-right {
+  margin-left: 2rem;
+  width: 50%;
+}
+
+.skills-title {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+.skills-divider {
+  border-bottom: 1px solid #333;
+  margin-bottom: 1rem;
+}
+
+/* Skills List */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-item {
+  border: 1px solid #222;
+  background-color: #161310;
+  border-radius: 25px;
+  padding: 8px 10px;
+  display: inline-block;
+  white-space: nowrap;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+}
+
+.skill-name {
+  font-weight: 500;
+  color: #CCC;
+}
+
+.skill-category {
+  color: #999;
+  font-size: 0.9rem;
+  margin-left: 5px;
+}
+
+.highlight-skill {
+  background-color: #231800;
+  font-weight: 500;
+  border: 1px solid #432C05;
+}
+
+/* Carousel Cards */
+.carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 0 65px;
+}
+
+.cards-track {
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.5s ease;
+}
+
+.card {
+  border: 1px solid #333;
+  padding: 2rem;
+  background-color: #111;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+@media (min-width: 769px) {
   .card {
     flex: 0 0 50%;
-    border: 1px solid #333;
-    padding: 2rem;
-    background-color: #111;
-    border-radius: 0.25rem;
-    box-sizing: border-box;
-    /* Remove extra margins if any */
-    margin: 0;
   }
-  
-  /* Navigation Buttons using absolute positioning */
-  .carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    z-index: 1;
-    /* Optional styling for size or padding */
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 100%;
   }
-  
-  /* Position the left button near the left edge */
-  .prev-btn {
-    left: 10px;
+  .skills-header {
+    flex-direction: column;
   }
-  
-  /* Position the right button near the right edge */
-  .next-btn {
-    right: 10px;
+  .header-left, .header-right {
+    width: 100%;
   }
-  
-  
-  
-  .card-icon {
-    margin-bottom: 1.5rem;
+  .header-right {
+    margin-left: 0;
+    margin-top: 2rem;
   }
-  
-  .card-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+  .carousel-track-wrapper {
+    padding: 0 40px;
   }
-  
-  .card-description {
-    color: #ccc;
+  .cards-track {
+    gap: 0.5rem;
   }
-  
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.chevron-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.card-icon-svg {
+  width: 48px;
+  height: 48px;
+}
+
+@media (max-width: 576px) {
+  .chevron-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .card-icon-svg {
+    width: 36px;
+    height: 36px;
+  }
+  .skill-item {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+  .skills-title {
+    font-size: 1.8rem;
+  }
+  .header-title {
+    font-size: 2.5rem;
+  }
+}
+
+.card-icon {
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  color: #ccc;
+}

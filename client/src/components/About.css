@@ -1,37 +1,25 @@
 .about-section {
   background-color: transparent;
-  padding: 3rem 0 9rem 0; /* Reduced horizontal padding */
-  /* margin-bottom: 5rem; */
+  padding: 3rem 0 9rem 0;
   max-width: 100%;
-  /* margin-left: auto; */
-  /* margin-right: auto; */
-  /* Removed background and border for a less card-like appearance */
   transition: all 0.3s ease-in-out;
 }
+
 .about-container {
   max-width: 1200px;
   margin: 0 auto;
 }
-/* .about-section {
-  background: linear-gradient(135deg, #270401 0%, #000000 100%);
-  padding: 4rem 2rem;
-  margin-bottom: 4rem;
-  border-radius: 12px;
-  color: #ffffff;
-} */
 
 .about-section:hover {
-  transform: translateY(-3px); /* Reduced lift on hover */
-  /* Removed box-shadow on hover */
+  transform: translateY(-3px);
 }
 
 .about-heading {
-  font-size: 2.6rem; /* Slightly larger heading */
-  font-weight: 700; /* Lighter font weight */
-  color: #2c3e50; /* Darker, more professional text color */
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #2c3e50;
   margin-bottom: 2rem;
   padding-bottom: 0.5rem;
-  /* Refined gradient for a softer look */
   background: #fff5f5;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -45,9 +33,9 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 30%; /* Shorter underline */
-  height: 4px; /* Thicker underline */
-  background: #fff5f5; /* Underline color */
+  width: 30%;
+  height: 4px;
+  background: #fff5f5;
   border-radius: 4px;
   transform: scaleX(0);
   transform-origin: left;
@@ -59,20 +47,58 @@
 }
 
 .about-content {
-  padding: 0 2rem; /* Reduced horizontal padding */
+  padding: 0 2rem;
 }
 
 .about-content p {
   font-size: 1.2rem;
-  color: #fee; /* Darker text for content */
+  color: #ffffff; /* Changed from #fee to #ffffff for better readability */
   line-height: 1.6;
   margin-bottom: 1.8em;
+}
+
+/* List styles moved from About.js */
+.about-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-list-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.about-list-item span {
+  color: #ffffff;
+  line-height: 1.5;
+}
+
+.bullet-container {
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  padding-left: 1px;
+  padding-top: 1px;
+}
+
+.bullet {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 50%;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .about-section {
-    padding: 2.5rem 0; /* Adjusted padding */
+    padding: 2.5rem 0;
     margin-bottom: 4rem;
   }
 
@@ -89,12 +115,26 @@
     font-size: 1.1rem;
     line-height: 1.7;
   }
+
+  .about-list-item {
+    margin-bottom: 0.8rem;
+  }
+
+  .bullet-container {
+    min-width: 12px;
+    height: 12px;
+    margin-right: 1rem;
+  }
+
+  .bullet {
+    width: 4px;
+    height: 4px;
+  }
 }
 
-/* Smaller screens */
 @media (max-width: 576px) {
   .about-section {
-    padding: 2rem 0; /* Adjusted padding */
+    padding: 2rem 0;
     margin-bottom: 3rem;
   }
 

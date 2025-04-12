@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Skills.css';
 
 const SkillsCarousel = () => {
-  // currentSlide is the index of the leftmost visible slide.
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+  const [slidesPerView, setSlidesPerView] = useState(window.innerWidth > 768 ? 2 : 1);
 
-  // Icons as SVG components
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesPerView(window.innerWidth > 768 ? 2 : 1);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Icons as SVG components with responsive sizes via CSS
   const UsersIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="text-gray-400"
+      className="card-icon-svg text-gray-400"
     >
       <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
       <circle cx="9" cy="7" r="4" />
@@ -27,69 +32,51 @@ const SkillsCarousel = () => {
     </svg>
   );
 
-  const DeveloperIcon  = () => (
-    // <svg
-    //   xmlns="http://www.w3.org/2000/svg"
-    //   width="48"
-    //   height="48"
-    //   viewBox="0 0 24 24"
-    //   fill="none"
-    //   stroke="currentColor"
-    //   strokeWidth="1.5"
-    //   strokeLinecap="round"
-    //   strokeLinejoin="round"
-    //   className="text-gray-400"
-    // >
-    //   <circle cx="11" cy="11" r="8" />
-    //   <path d="m21 21-4.3-4.3" />
-    // </svg>
-    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="48"
-    height="48"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="16 18 22 12 16 6" />
-    <polyline points="8 6 2 12 8 18" />
-  </svg>
-  );
-
-  const ProbIcon = () => (
-    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="48"
-    height="48"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M9 2a7 7 0 0 0 0 20h0V2h0zM9 12h5" />
-    <circle cx="19" cy="5" r="2.5" />
-    <circle cx="19" cy="12" r="2.5" />
-    <circle cx="19" cy="19" r="2.5" />
-    <path d="M14 5h3M14 12h3M14 19h3" />
-  </svg>
-  );
-
-  const ChevronLeft = () => (
+  const DeveloperIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="card-icon-svg text-gray-400"
+    >
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  );
+
+  const ProbIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="card-icon-svg text-gray-400"
+    >
+      <path d="M9 2a7 7 0 0 0 0 20h0V2h0zM9 12h5" />
+      <circle cx="19" cy="5" r="2.5" />
+      <circle cx="19" cy="12" r="2.5" />
+      <circle cx="19" cy="19" r="2.5" />
+      <path d="M14 5h3M14 12h3M14 19h3" />
+    </svg>
+  );
+
+  const ChevronLeft = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="chevron-icon"
     >
       <path d="m15 18-6-6 6-6" />
     </svg>
@@ -98,14 +85,13 @@ const SkillsCarousel = () => {
   const ChevronRight = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="28"
-      height="28"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
+      className="chevron-icon"
     >
       <path d="m9 18 6-6-6-6" />
     </svg>
@@ -131,27 +117,23 @@ const SkillsCarousel = () => {
         "I explore machine learning to build intelligent systems that solve real-world challenges. My work includes models for medical imaging, predictive analytics, and pattern recognition.",
     },
   ];
-  
-  // Increment currentSlide by one. Since two slides are visible, the maximum valid left index is slides.length - 2.
-  // When the end is reached, wrap back to the start.
+
   const handleNext = () => {
-    if (currentSlide < slides.length - 2) {
+    if (currentSlide < slides.length - slidesPerView) {
       setCurrentSlide(currentSlide + 1);
     } else {
       setCurrentSlide(0);
     }
   };
 
-  // Decrement currentSlide by one. If already at 0, wrap to the last valid index.
   const handlePrev = () => {
     if (currentSlide > 0) {
       setCurrentSlide(currentSlide - 1);
     } else {
-      setCurrentSlide(slides.length - 2);
+      setCurrentSlide(slides.length - slidesPerView);
     }
   };
 
-  // Sample skills data in header (unchanged)
   const skillsData = [
     { name: "Python", category: "Data" },
     { name: "SQL", category: "Data" },
@@ -169,7 +151,6 @@ const SkillsCarousel = () => {
   return (
     <div className="skills-carousel-wrapper">
       <div className="skills-carousel-container">
-        {/* Header Section */}
         <div className="skills-header">
           <div className="header-left">
             <p className="header-subtitle">WHAT I CAN OFFER</p>
@@ -202,7 +183,6 @@ const SkillsCarousel = () => {
           </div>
         </div>
 
-        {/* Carousel Section */}
         <div className="carousel-container">
           <button
             onClick={handlePrev}
@@ -212,12 +192,10 @@ const SkillsCarousel = () => {
             <ChevronLeft />
           </button>
 
-          {/* Track wrapper limits visible area to two slides */}
           <div className="carousel-track-wrapper">
-            {/* cards-track holds all slides and transitions based on currentSlide */}
             <div
               className="cards-track"
-              style={{ transform: `translateX(-${currentSlide * 52}%)` }}
+              style={{ transform: `translateX(-${(currentSlide * 100) / slidesPerView}%)` }}
             >
               {slides.map((slide, i) => (
                 <div className="card" key={i}>
