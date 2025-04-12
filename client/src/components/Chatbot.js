@@ -3,7 +3,7 @@ import { FaComment, FaPaperPlane, FaRegCommentAlt } from 'react-icons/fa'; // Im
 import './Chatbot.css'; // Import the CSS file
 
 const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-// console.log(REACT_APP_BACKEND_URL);
+
 const Chatbot = () => {
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
@@ -41,6 +41,7 @@ const Chatbot = () => {
     try {
       
       // await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log(`${REACT_APP_BACKEND_URL}/chatbot`);
       const response = await fetch(`${REACT_APP_BACKEND_URL}/chatbot`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
