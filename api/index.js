@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 API_KEY = process.env.TOGETHER_API_KEY;
 
-app.post('/api/chatbot', async (req, res) => {
+app.post('/chatbot', async (req, res) => {
   const userMessage = req.body.message;
   const togetherApiUrl = 'https://api.together.xyz/v1/chat/completions';
 //   console.log(`User message: ${userMessage}`);
