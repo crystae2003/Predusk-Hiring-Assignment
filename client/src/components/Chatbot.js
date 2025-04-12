@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaComment, FaPaperPlane, FaRegCommentAlt } from 'react-icons/fa'; // Import necessary icons
 import './Chatbot.css'; // Import the CSS file
 
+const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// console.log(REACT_APP_BACKEND_URL);
 const Chatbot = () => {
   const [message, setMessage] = useState('');
   const [chat, setChat] = useState([]);
@@ -14,13 +16,11 @@ const Chatbot = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  // Scroll to bottom whenever chat messages update
+  
   useEffect(() => {
     scrollToBottom();
   }, [chat]);
 
-  // Scroll to bottom when chat opens
   useEffect(() => {
     if (isOpen) {
         // Timeout allows the animation to start before scrolling
@@ -36,14 +36,12 @@ const Chatbot = () => {
     const newUserMessage = { sender: 'user', text: trimmedMessage };
     setChat(prevChat => [...prevChat, newUserMessage]);
     setMessage('');
-    setIsLoading(true); // Start loading
+    setIsLoading(true); 
 
     try {
-      // --- Your API Call ---
-      // Simulating API call delay for demonstration
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // Replace with your actual fetch call:
-      const response = await fetch('http://localhost:5000/api/chatbot', {
+      
+      // await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch(`${REACT_APP_BACKEND_URL}/chatbot`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: trimmedMessage }) // Send trimmed message
@@ -64,15 +62,15 @@ const Chatbot = () => {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
-      e.preventDefault(); // Prevent default newline behavior
+    if (e.key === 'Enter' && !e.shiftKey) { 
+      e.preventDefault(); 
       sendMessage();
     }
   };
 
   return (
     <>
-      {/* "Ask Me" Button */}
+      
       <button
         className="chat-button"
         onClick={() => setIsOpen(!isOpen)}
@@ -87,10 +85,10 @@ const Chatbot = () => {
         {/* Header */}
         <div className="chat-header">
           <div className="chat-header-content">
-             <FaRegCommentAlt className="chat-header-icon" /> {/* Header Icon */}
+             <FaRegCommentAlt className="chat-header-icon" /> 
              <div className="chat-header-text">
-               <h3>How can we help?</h3> {/* Updated Title */}
-               {/* <span>Typically replies instantly</span>  Optional subtitle */}
+               <h3>How can we help?</h3> 
+               
              </div>
           </div>
           <button onClick={() => setIsOpen(false)} className="close-button" aria-label="Close chat">
@@ -102,7 +100,7 @@ const Chatbot = () => {
         <div className="chat-messages">
           {chat.length === 0 ? (
             <div className="initial-message">
-              👋 {/* Optional Waving Hand Emoji */}
+              👋 
               <br/>
               Ask Me Anything
               <br/>
