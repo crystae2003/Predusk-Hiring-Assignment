@@ -116,19 +116,19 @@ const SkillsCarousel = () => {
       title: "Communication & Collaboration",
       icon: <UsersIcon />,
       description:
-        "Years of experience as a professor have equipped me with the ability to communicate complex ideas clearly, actively listen to understand user needs, and present findings and designs with confidence. This ensures effective collaboration with stakeholders and fosters a user-centered design process.",
+        "Skilled in conveying complex ideas clearly and confidently across technical and non-technical audiences. I value active listening, clarity, and collaboration—ensuring every interaction drives progress and mutual understanding.",
     },
     {
-      title: "User Research",
+      title: "Full-Stack Development",
       icon: <DeveloperIcon />,
       description:
-        "I possess strong research skills honed through years of teaching. I can understand user needs and pain points through surveys, interviews, and user testing (even with limited experience).",
+        "Experienced in building scalable web applications with seamless front-end and back-end integration. I work with modern technologies to craft efficient, end-to-end digital solutions.",
     },
     {
-      title: "Creative Problem Solving",
+      title: "Machine Learning",
       icon: <ProbIcon />,
       description:
-        "I excel at breaking down complex problems to develop clear, user‑centered solutions—a skill built up over years of both teaching and practical experience.",
+        "I explore machine learning to build intelligent systems that solve real-world challenges. My work includes models for medical imaging, predictive analytics, and pattern recognition.",
     },
   ];
   
