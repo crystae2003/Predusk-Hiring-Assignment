@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaComment, FaPaperPlane, FaRegCommentAlt } from 'react-icons/fa'; // Import necessary icons
 import './Chatbot.css'; // Import the CSS file
 
-const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const REACT_APP_BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const Chatbot = () => {
   const [message, setMessage] = useState('');

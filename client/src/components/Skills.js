@@ -149,7 +149,7 @@ const SkillsCarousel = () => {
   const highlightedCategories = ['Data', 'DevOps'];
 
   return (
-    <div className="skills-carousel-wrapper">
+    <div id="skills" className="skills-carousel-wrapper">
       <div className="skills-carousel-container">
         <div className="skills-header">
           <div className="header-left">
