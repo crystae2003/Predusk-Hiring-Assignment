@@ -1,0 +1,107 @@
+.resume-section {
+    padding: 6rem 0;
+    position: relative;
+  }
+  
+  .resume-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  
+  .resume-heading {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #fff5f5;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .resume-heading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: #3498db;
+    border-radius: 2px;
+  }
+  
+  .resume-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+  
+  .resume-text {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .resume-text p {
+    color: #fee;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .resume-download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+  
+  .resume-download-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+    border-color: #3498db;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+  
+  .download-icon {
+    font-size: 1.2rem;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    .resume-section {
+      padding: 4rem 0;
+    }
+  
+    .resume-heading {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .resume-text p {
+      font-size: 1rem;
+    }
+  
+    .resume-download-button {
+      padding: 0.8rem 1.6rem;
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .resume-container {
+      padding: 0 1rem;
+    }
+  
+    .resume-heading {
+      font-size: 2rem;
+    }
+  }

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Hero from './components/Hero';
+import User from './components/User';
+import About from './components/About';
 import Skills from './components/Skills';
 import Resume from './components/Resume';
 import Footer from './components/Footer';
@@ -8,12 +9,14 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div className="portfolio-container">
-      <Hero /> 
+      <User />
+      
       <main className="portfolio-main">
-        <Skills />
+        <About />
+        <Skills />  
         <Resume />
+        <Footer />
       </main>
-      <Footer />
     </div>
   );
 }

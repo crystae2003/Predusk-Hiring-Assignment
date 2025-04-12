@@ -1,43 +1,230 @@
-import React from 'react';
-import './ComponentStyles.css';
+import React, { useState } from 'react';
+import './Skills.css';
 
-function Skills() {
+const SkillsCarousel = () => {
+  // currentSlide is the index of the leftmost visible slide.
+  const [currentSlide, setCurrentSlide] = useState(0);
   
-  const technicalSkills = [
-    { name: 'Python', category: 'Data' },
-    { name: 'SQL', category: 'Data' },
-    { name: 'Pandas & NumPy', category: 'Data' },
-    { name: 'Tensorflow', category: 'Data' },
-    { name: 'Docker', category: 'DevOps' },
-    { name: 'Kubernetes', category: 'DevOps' },
-    { name: 'JavaScript (React, Node.js)', category: 'Web' },
-    { name: 'HTML & CSS', category: 'Web' },
-    { name: 'Git', category: 'Tools' },
+
+  // Icons as SVG components
+  const UsersIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="48"
+      height="48"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-gray-400"
+    >
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  );
+
+  const SearchIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="48"
+      height="48"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-gray-400"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+
+  const ProbIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="48"
+      height="48"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="text-gray-400"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M14 10l-4 4" />
+      <path d="M10 10l4 4" />
+    </svg>
+  );
+
+  const ChevronLeft = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+  );
+
+  const ChevronRight = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  );
+
+  const slides = [
+    {
+      title: "Communication & Collaboration",
+      icon: <UsersIcon />,
+      description:
+        "Years of experience as a professor have equipped me with the ability to communicate complex ideas clearly, actively listen to understand user needs, and present findings and designs with confidence. This ensures effective collaboration with stakeholders and fosters a user-centered design process.",
+    },
+    {
+      title: "User Research",
+      icon: <SearchIcon />,
+      description:
+        "I possess strong research skills honed through years of teaching. I can understand user needs and pain points through surveys, interviews, and user testing (even with limited experience).",
+    },
+    {
+      title: "Creative Problem Solving",
+      icon: <ProbIcon />,
+      description:
+        "I excel at breaking down complex problems to develop clear, user‑centered solutions—a skill built up over years of both teaching and practical experience.",
+    },
   ];
+  
+  // Increment currentSlide by one. Since two slides are visible, the maximum valid left index is slides.length - 2.
+  // When the end is reached, wrap back to the start.
+  const handleNext = () => {
+    if (currentSlide < slides.length - 2) {
+      setCurrentSlide(currentSlide + 1);
+    } else {
+      setCurrentSlide(0);
+    }
+  };
 
+  // Decrement currentSlide by one. If already at 0, wrap to the last valid index.
+  const handlePrev = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide(currentSlide - 1);
+    } else {
+      setCurrentSlide(slides.length - 2);
+    }
+  };
 
+  // Sample skills data in header (unchanged)
+  const skillsData = [
+    { name: "Python", category: "Data" },
+    { name: "SQL", category: "Data" },
+    { name: "NumPy & Pandas", category: "Data" },
+    { name: "TensorFlow", category: "Data" },
+    { name: "Docker", category: "DevOps" },
+    { name: "Kubernetes", category: "DevOps" },
+    { name: "JavaScript (React, Node.js)", category: "" },
+    { name: "HTML & CSS", category: "" },
+    { name: "Flutter (Dart)", category: "" },
+    { name: "Git", category: "" },
+  ];
   const highlightedCategories = ['Data', 'DevOps'];
 
   return (
-    <section id="skills" className="portfolio-section">
-      <h2>Skills</h2>
-      <ul className="skills-list">
-        {technicalSkills.map((skill) => (
-          <li
-            key={skill.name}
-            className={`skill-item ${
-              highlightedCategories.includes(skill.category) ? 'highlight-skill' : ''
-            }`}
-          >
-            {skill.name}
-            {highlightedCategories.includes(skill.category) && (
-              <span className="skill-category-tag"> ({skill.category})</span>
-            )}
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
+    <div className="skills-carousel-wrapper">
+      <div className="skills-carousel-container">
+        {/* Header Section */}
+        <div className="skills-header">
+          <div className="header-left">
+            <p className="header-subtitle">WHAT I CAN OFFER</p>
+            <h1 className="header-title">
+              Designing for the future.
+              <br />
+              Fresh perspective
+            </h1>
+          </div>
+          <div className="header-right">
+            <h2 className="skills-title">Skills</h2>
+            <div className="skills-divider"></div>
+            <div className="skills-list">
+              {skillsData.map((skill, index) => (
+                <div
+                  key={index}
+                  className={`skill-item ${
+                    highlightedCategories.includes(skill.category)
+                      ? "highlight-skill"
+                      : ""
+                  }`}
+                >
+                  <span className="skill-name">{skill.name}</span>
+                  {skill.category && (
+                    <span className="skill-category">({skill.category})</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
-export default Skills;
+        {/* Carousel Section */}
+        <div className="carousel-container">
+          <button
+            onClick={handlePrev}
+            className="carousel-btn prev-btn"
+            aria-label="Previous slide"
+          >
+            <ChevronLeft />
+          </button>
+
+          {/* Track wrapper limits visible area to two slides */}
+          <div className="carousel-track-wrapper">
+            {/* cards-track holds all slides and transitions based on currentSlide */}
+            <div
+              className="cards-track"
+              style={{ transform: `translateX(-${currentSlide * 52}%)` }}
+            >
+              {slides.map((slide, i) => (
+                <div className="card" key={i}>
+                  <div className="card-icon">{slide.icon}</div>
+                  <h3 className="card-title">{slide.title}</h3>
+                  <p className="card-description">{slide.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={handleNext}
+            className="carousel-btn next-btn"
+            aria-label="Next slide"
+          >
+            <ChevronRight />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SkillsCarousel;

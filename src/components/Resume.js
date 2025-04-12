@@ -1,23 +1,32 @@
 import React from 'react';
-import './ComponentStyles.css';
+import './Resume.css';
+import { FaFileDownload } from 'react-icons/fa';
 
 function Resume() {
-  const resumePath = ''; 
-  
+  const resumePath = '/path-to-your-resume.pdf'; // Update with your actual resume path
 
   return (
-    <section id="resume" className="portfolio-section">
-      <h2>Resume</h2>
-      <p>View or download my detailed professional background:</p>
-      <a
-        href={resumePath}
-        className="button resume-button"
-        target="_blank" 
-        rel="noopener noreferrer" // Security best practice
-        download=""
-      >
-        View My Resume (PDF)
-      </a>
+    <section id="resume" className="resume-section">
+      <div className="resume-container">
+        <h2 className="resume-heading">Resume</h2>
+        
+        <div className="resume-content">
+          <div className="resume-text">
+            <p>Download my resume to learn more about my professional experience, technical skills, and achievements.</p>
+          </div>
+          
+          <a
+            href={resumePath}
+            className="resume-download-button"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="HemlataGautam-Resume.pdf"
+          >
+            <FaFileDownload className="download-icon" />
+            <span>Download Resume</span>
+          </a>
+        </div>
+      </div>
     </section>
   );
 }
