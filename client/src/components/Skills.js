@@ -27,41 +27,56 @@ const SkillsCarousel = () => {
     </svg>
   );
 
-  const SearchIcon = () => (
+  const DeveloperIcon  = () => (
+    // <svg
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   width="48"
+    //   height="48"
+    //   viewBox="0 0 24 24"
+    //   fill="none"
+    //   stroke="currentColor"
+    //   strokeWidth="1.5"
+    //   strokeLinecap="round"
+    //   strokeLinejoin="round"
+    //   className="text-gray-400"
+    // >
+    //   <circle cx="11" cy="11" r="8" />
+    //   <path d="m21 21-4.3-4.3" />
+    // </svg>
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-gray-400"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
+    xmlns="http://www.w3.org/2000/svg"
+    width="48"
+    height="48"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="16 18 22 12 16 6" />
+    <polyline points="8 6 2 12 8 18" />
+  </svg>
   );
 
   const ProbIcon = () => (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-gray-400"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="M14 10l-4 4" />
-      <path d="M10 10l4 4" />
-    </svg>
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="48"
+    height="48"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M9 2a7 7 0 0 0 0 20h0V2h0zM9 12h5" />
+    <circle cx="19" cy="5" r="2.5" />
+    <circle cx="19" cy="12" r="2.5" />
+    <circle cx="19" cy="19" r="2.5" />
+    <path d="M14 5h3M14 12h3M14 19h3" />
+  </svg>
   );
 
   const ChevronLeft = () => (
@@ -105,7 +120,7 @@ const SkillsCarousel = () => {
     },
     {
       title: "User Research",
-      icon: <SearchIcon />,
+      icon: <DeveloperIcon />,
       description:
         "I possess strong research skills honed through years of teaching. I can understand user needs and pain points through surveys, interviews, and user testing (even with limited experience).",
     },
