@@ -3,7 +3,7 @@ import './Resume.css';
 import { FaFileDownload } from 'react-icons/fa';
 
 function Resume() {
-  const resumePath = '/Resume/HemlataGautamResume.pdf'; // Update with your actual resume path
+  const resumePath = '/Resume/HemlataGautamResume.pdf'; 
 
   return (
     <section id="resume" className="resume-section">
