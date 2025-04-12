@@ -5,7 +5,7 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Resume from './components/Resume';
 import Footer from './components/Footer';
-
+import Chatbot from './components/Chatbot';
 function App() {
   return (
     <div className="portfolio-container">
@@ -15,6 +15,7 @@ function App() {
         <About />
         <Skills />  
         <Resume />
+        <Chatbot />
         <Footer />
       </main>
     </div>
