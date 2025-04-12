@@ -13,7 +13,8 @@ API_KEY = process.env.TOGETHER_API_KEY;
 app.post('/chatbot', async (req, res) => {
   const userMessage = req.body.message;
   const togetherApiUrl = 'https://api.together.xyz/v1/chat/completions';
-//   console.log(`User message: ${userMessage}`);
+  console.log(`User message: ${userMessage}`);
+  console.log(`API Key: ${API_KEY}`);
   try {
     const response = await axios.post(
         togetherApiUrl,
