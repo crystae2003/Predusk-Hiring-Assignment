@@ -23,14 +23,14 @@ client/yarn-debug.log*
 client/yarn-error.log*
 
 
-server/node_modules/
-# server/.env
-# server/.env.*
-server/dist/
-server/build/
-server/coverage/
-server/logs/
-server/debug.log
-server/npm-debug.log*
-server/yarn-debug.log*
-server/yarn-error.log*
+api/node_modules/
+api/.env
+api/.env.*
+api/dist/
+api/build/
+api/coverage/
+api/logs/
+api/debug.log
+api/npm-debug.log*
+api/yarn-debug.log*
+api/yarn-error.log*
